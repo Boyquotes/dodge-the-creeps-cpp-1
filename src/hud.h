@@ -9,6 +9,7 @@
 #include <thread>
 #include <chrono>
 #include <string>
+#include <String.hpp>
 
 namespace godot {
   class Hud : public CanvasLayer {

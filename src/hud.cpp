@@ -52,8 +52,7 @@ void Hud::show_game_over() {
 }
 
 void Hud::update_score(int score) {
-  std::string score_string = std::to_string(score);
-  score_label->set_text(String(score_string.c_str()));
+  score_label->set_text(String::num_int64(score));
 }
 
 void Hud::_on_start_button_pressed() {

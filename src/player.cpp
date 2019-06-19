@@ -38,7 +38,6 @@ void Player::_ready() {
 }
 
 void Player::_process(float delta) {
-  
   Vector2 velocity{0, 0};
 
   Input *i = Input::get_singleton();
@@ -65,7 +64,6 @@ void Player::_process(float delta) {
       animated_sprite->play();
     }
   } else {
-    
     if (animated_sprite != nullptr) {
       animated_sprite->stop();
     }
@@ -75,7 +73,7 @@ void Player::_process(float delta) {
   position += velocity * delta;
   position.x = std::clamp(position.x, 0.0f, screen_size.x);
   position.y = std::clamp(position.y, 0.0f, screen_size.y);
-  
+
   this->set_position(position);
 
   if (velocity.x != 0) {
