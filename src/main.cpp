@@ -34,6 +34,9 @@ void Main::_ready() {
   this->mob_path = cast_to<Path2D>(get_node("MobPath"));
   this->mob_spawn_location = cast_to<PathFollow2D>(mob_path->get_node("MobSpawnLocation"));
   this->hud = cast_to<Hud>(get_node("HUD"));
+  this->music = cast_to<AudioStreamPlayer>(get_node("Music"));
+  this->death_sound = cast_to<AudioStreamPlayer>(get_node("DeathSound"));
+
 }
 
 void Main::_process(float delta) {
@@ -42,11 +45,15 @@ void Main::_process(float delta) {
 void Main::game_over() {
   mob_timer->stop();
   score_timer->stop();
+  music->stop();
+  death_sound->play();
   hud->show_game_over();
 }
 
 void Main::new_game() {
   this->_score = 0;
+
+  music->play();
 
   Player *player = cast_to<Player>(get_node("Player"));
   Position2D *start_position = cast_to<Position2D>(get_node("StartPosition"));
@@ -70,7 +77,6 @@ void Main::_on_score_timer_timeout() {
 }
 
 void Main::_on_mob_timer_timeout() {
-
   std::uniform_int_distribution<int> dis(0, RAND_MAX);
   int random_int = dis(rand);
   mob_spawn_location->set_offset(random_int);
@@ -87,6 +93,8 @@ void Main::_on_mob_timer_timeout() {
   mob_instance->set_rotation(direction);
 
   mob_instance->set_linear_velocity(Vector2{rand_range(150.0f, 250.0f), 0}.rotated(direction));
+
+  hud->connect("start_game", mob_instance, "_on_start_game");
 }
 
 float Main::rand_range(float min, float max) {

@@ -6,6 +6,7 @@ void Enemy::_register_methods() {
   register_method("_process", &Enemy::_process);
   register_method("_ready", &Enemy::_ready);
   register_method("_on_visibility_screen_exited", &Enemy::_on_visibility_screen_exited);
+  register_method("_on_start_game", &Enemy::_on_start_game);
   register_property<Enemy, int>("min_speed", &Enemy::min_speed, 150);
   register_property<Enemy, int>("max_speed", &Enemy::max_speed, 250);
   // register_signal<Simple>((String)"button_pressed", "node", GODOT_VARIANT_TYPE_OBJECT,
@@ -24,7 +25,6 @@ void Enemy::_init() {
   // init random number generator
   std::random_device rd;
   rand = std::mt19937{rd()};
-  Godot::print("In init!");
 }
 
 void Enemy::_ready() {
@@ -46,3 +46,6 @@ void Enemy::_on_visibility_screen_exited() {
   queue_free();
 }
 
+void Enemy::_on_start_game() {
+  queue_free();
+}

@@ -15,6 +15,7 @@
 #include <Position2D.hpp>
 #include <Path2D.hpp>
 #include <PathFollow2D.hpp>
+#include <AudioStreamPlayer.hpp>
 #include <cmath>
 #include "hud.h"
 
@@ -45,6 +46,8 @@ namespace godot {
     Timer *mob_timer;
     Path2D *mob_path;
     PathFollow2D *mob_spawn_location;
+    AudioStreamPlayer *music;
+    AudioStreamPlayer *death_sound;
     int _score;
     std::mt19937 rand;
     float rand_range(float min, float max);

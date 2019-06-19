@@ -25,6 +25,7 @@ namespace godot {
     void _process(float delta);
     void _ready();
     void _on_visibility_screen_exited();
+    void _on_start_game();
 
     private:
     String mob_types[3] = {"walk", "swim", "fly"};
