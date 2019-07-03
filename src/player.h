@@ -15,6 +15,7 @@
 #include <Vector2.hpp>
 
 namespace godot {
+
   class Player : public Area2D {
     GODOT_CLASS(Player, Area2D)
 
@@ -27,7 +28,6 @@ namespace godot {
     void _init();
     void _process(float delta);
     void _ready();
-    void _on_body_entered();
     void start(Vector2 pos);
   
     private:
